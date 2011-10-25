@@ -103,4 +103,36 @@ class Location < ActiveRecord::Base
     self.version = self.version + 1
   end
 
+#10252011
+#created to add state name to Location information
+
+  def self.get_info_with_state_name
+
+    location_with_state_name = Array.new
+    loc_state = Hash.new
+    
+    Location.find(:all).each do |loc|
+
+      loc_state["api_code"] = loc.api_code
+      loc_state["email_address"] = loc.email_address
+      loc_state["fax"] = loc.fax
+      loc_state["id"] = loc.id
+      loc_state["is_active"] = loc.is_active
+      loc_state["name"] = loc.name
+      loc_state["name_01"] = loc.name_01
+      loc_state["phone"] = loc.phone
+      loc_state["state_id"] = loc.state_id
+      loc_state["street_address01"] = loc.street_address01
+      loc_state["street_address02"] = loc.street_address02
+      loc_state["vendor_id"] = loc.vendor_id
+      loc_state["version"] = loc.version
+      loc_state["zip_code"] = loc.zip_code
+      loc_state["state_name"] = loc.state.name
+      location_with_state_name.push(loc_state)
+      
+    end
+    return location_with_state_name
+    
+  end
+
 end

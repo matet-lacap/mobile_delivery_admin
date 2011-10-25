@@ -208,4 +208,84 @@ class Product < ActiveRecord::Base
 
   end
 
+
+  def self.get_product_by_id_all_info(product_id)
+
+    product_add_ons_variants = Array.new
+    catalog_add_ons_variants = Hash.new
+
+      product = Product.find((product_id))
+        catalog_add_ons_variants["catalog_id"] = product.catalog_id
+        catalog_add_ons_variants["description_long"] = product.description_long
+        catalog_add_ons_variants["description_short"] = product.description_short
+        catalog_add_ons_variants["id"] = product.id
+        catalog_add_ons_variants["image_content_type"] = product.image_content_type
+        catalog_add_ons_variants["image_url"] = product.image_url
+        catalog_add_ons_variants["image_file_name"] = product.image_file_name
+        catalog_add_ons_variants["image_file_size"] = product.image_file_size
+        catalog_add_ons_variants["image_updated_at"] =  product.image_updated_at
+        catalog_add_ons_variants["is_active"] = product.is_active
+        catalog_add_ons_variants["is_delivery"] = product.is_delivery
+        catalog_add_ons_variants["is_only_special_offer"] = product.is_only_special_offer
+        catalog_add_ons_variants["is_pickup"] = product.is_pickup
+        catalog_add_ons_variants["location_id"] = product.location_id
+        catalog_add_ons_variants["name"] = product.name
+        catalog_add_ons_variants["special_offer_price"] = product.special_offer_price
+        catalog_add_ons_variants["vat_id"] = product.vat_id
+        catalog_add_ons_variants["vendor_id"] = product.vendor_id
+        catalog_add_ons_variants["version"] = product.version
+        catalog_add_ons_variants["catalog_name"] = product.catalog.name
+        catalog_add_ons_variants["add_ons"] = product.add_ons
+        catalog_add_ons_variants["variant"] = product.variant
+      
+
+      
+
+      return catalog_add_ons_variants
+
+  end
+  
+
+  #10252011
+  #Output = product info with addons and variants
+
+  def self.get_product_all_info
+
+    
+    product_add_ons_variants = Array.new
+    catalog_add_ons_variants = Hash.new
+
+      Product.all.each do |product| 
+        catalog_add_ons_variants["catalog_id"] = product.catalog_id
+        catalog_add_ons_variants["description_long"] = product.description_long
+        catalog_add_ons_variants["description_short"] = product.description_short
+        catalog_add_ons_variants["id"] = product.id
+        catalog_add_ons_variants["image_content_type"] = product.image_content_type
+        catalog_add_ons_variants["image_url"] = product.image_url
+        catalog_add_ons_variants["image_file_name"] = product.image_file_name
+        catalog_add_ons_variants["image_file_size"] = product.image_file_size
+        catalog_add_ons_variants["image_updated_at"] =  product.image_updated_at
+        catalog_add_ons_variants["is_active"] = product.is_active
+        catalog_add_ons_variants["is_delivery"] = product.is_delivery
+        catalog_add_ons_variants["is_only_special_offer"] = product.is_only_special_offer
+        catalog_add_ons_variants["is_pickup"] = product.is_pickup
+        catalog_add_ons_variants["location_id"] = product.location_id
+        catalog_add_ons_variants["name"] = product.name
+        catalog_add_ons_variants["special_offer_price"] = product.special_offer_price
+        catalog_add_ons_variants["vat_id"] = product.vat_id
+        catalog_add_ons_variants["vendor_id"] = product.vendor_id
+        catalog_add_ons_variants["version"] = product.version
+        catalog_add_ons_variants["catalog_name"] = product.catalog.name
+        catalog_add_ons_variants["add_ons"] = product.add_ons
+        catalog_add_ons_variants["variant"] = product.variant
+        product_add_ons_variants.push(catalog_add_ons_variants)
+
+      end  
+
+      return product_add_ons_variants
+
+  end
+  
+
+
 end
