@@ -40,4 +40,5 @@ end
 gem "devise"
 gem 'foreigner'
 
+gem 'therubyracer'
 gem "paperclip", :git => "http://github.com/thoughtbot/paperclip.git"
