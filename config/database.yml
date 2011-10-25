@@ -1,0 +1,25 @@
+development:
+  adapter: postgresql
+  database: mobiledeliverybackup_development
+  username: postgres
+  password: ubuntu
+  host: localhost
+  encoding: UTF8
+
+
+test:
+  adapter: postgresql
+  database: mobiledeliverybackup_test
+  username: postgres
+  password: ubuntu
+  host: localhost
+  encoding: UTF8
+
+
+production:
+  adapter: postgresql
+  database: mobiledeliverybackup_production
+  username: postgres
+  password: ubuntu
+  host: localhost
+  encoding: UTF8
