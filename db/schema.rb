@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111025093247) do
+ActiveRecord::Schema.define(:version => 20111026090912) do
 
   create_table "add_ons", :force => true do |t|
     t.integer "catalog_id",                                                                  :null => false
@@ -362,6 +362,7 @@ ActiveRecord::Schema.define(:version => 20111025093247) do
     t.integer "version",                                   :default => 0,    :null => false
     t.boolean "is_active",                                 :default => true, :null => false
     t.string  "website"
+    t.string  "logo_url",                   :limit => 150
   end
 
 end
