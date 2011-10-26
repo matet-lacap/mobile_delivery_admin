@@ -18,6 +18,34 @@ class Variant < ActiveRecord::Base
 # Active Record Triggers
   before_save :set_version
 
+# Rails Admin
+
+  rails_admin do
+
+    
+    edit do
+      field :catalog_id
+      field :description
+      field :is_active
+      field :name
+      field :product_id
+      field :sort_order
+      field :variant_price      
+    end
+
+    show do
+      field :catalog_id
+      field :description
+      field :is_active
+      field :name
+      field :product_id
+      field :sort_order
+      field :variant_price
+    end
+  end
+
+
+
 
 # Private Methods
 
