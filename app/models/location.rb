@@ -110,7 +110,7 @@ class Location < ActiveRecord::Base
 
       location_with_state_name = Array.new
 
-      Location.find(:all).each do |loc|
+      Location.activeonly.each do |loc|
         loc_state = Hash.new
         loc_state["api_code"] = loc.api_code
         loc_state["email_address"] = loc.email_address
@@ -139,15 +139,28 @@ class Location < ActiveRecord::Base
     if loc_id == nil
       return 
     else
-      return Location.find(loc_id)
+      return Location.activeonly.find(loc_id)
     end
+  end
+
+
+  def self.get_location_by_vendor_id(id)
+    locations = Location.activeonly.where("vendor_id = ?", id)
+    locations_by_vendor_list = Array.new
+    
+    locations.each do |location|
+      locations_by_vendor_list.push(Location.activeonly.get_info_with_state_name_by_id(location.id))
+    end
+    
+    return locations_by_vendor_list
+    
   end
 
 
   def self.get_info_with_state_name_by_id(id)
   
       loc_state = Hash.new
-      loc = Location.find(id)
+      loc = Location.activeonly.find(id)
       
         loc_state["api_code"] = loc.api_code
         loc_state["email_address"] = loc.email_address

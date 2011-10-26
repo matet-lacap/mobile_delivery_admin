@@ -209,12 +209,36 @@ class Product < ActiveRecord::Base
   end
 
 
+  def self.get_all_products_info_by_vendor_id(id)
+    products = Product.activeonly.where("vendor_id = ?", id)
+    products_by_vendor_list = Array.new
+    
+    products.each do |product|
+      products_by_vendor_list.push(Product.get_product_by_id_all_info(product.id))
+    end
+    
+    return products_by_vendor_list
+    
+  end
+
+
+  def self.get_location_by_product_id(id)
+    loc_id =  Product.activeonly.find(id).location.object_id
+    if loc_id == nil
+      return 
+    else
+      return Location.find(loc_id)
+    end
+  end
+
   def self.get_product_by_id_all_info(product_id)
 
     product_add_ons_variants = Array.new
     catalog_add_ons_variants = Hash.new
 
-      product = Product.find(product_id)
+      product = Product.activeonly.find(product_id)
+      
+      if product
         catalog_add_ons_variants["catalog_id"] = product.catalog_id
         catalog_add_ons_variants["description_long"] = product.description_long
         catalog_add_ons_variants["description_short"] = product.description_short
@@ -228,11 +252,7 @@ class Product < ActiveRecord::Base
         catalog_add_ons_variants["is_delivery"] = product.is_delivery
         catalog_add_ons_variants["is_only_special_offer"] = product.is_only_special_offer
         catalog_add_ons_variants["is_pickup"] = product.is_pickup
-        if product.location.object_id
-          catalog_add_ons_variants["location_id"] = product.location.object_id
-        else
-          catalog_add_ons_variants["location_id"] = nil
-        end
+        catalog_add_ons_variants["location_id"] = product.location.object_id
         catalog_add_ons_variants["name"] = product.name
         catalog_add_ons_variants["special_offer_price"] = product.special_offer_price
         catalog_add_ons_variants["vat_id"] = product.vat_id
@@ -241,22 +261,22 @@ class Product < ActiveRecord::Base
         catalog_add_ons_variants["catalog_name"] = product.catalog.name
         catalog_add_ons_variants["add_ons"] = product.add_ons
         catalog_add_ons_variants["variant"] = product.variant
-      
-      return catalog_add_ons_variants
-
+            
+        return catalog_add_ons_variants
+        
+       else
+       return
+       end
   end
   
 
   #10252011
   #Output = product info with addons and variants
 
-  def self.get_product_all_info
-
-    
+  def self.get_product_all_info    
     product_add_ons_variants = Array.new
     
-
-      Product.all.each do |product| 
+      Product.activeonly.each do |product| 
         catalog_add_ons_variants = Hash.new
         catalog_add_ons_variants["catalog_id"] = product.catalog_id
         catalog_add_ons_variants["description_long"] = product.description_long
@@ -280,8 +300,8 @@ class Product < ActiveRecord::Base
         catalog_add_ons_variants["catalog_name"] = product.catalog.name
         catalog_add_ons_variants["add_ons"] = product.add_ons
         catalog_add_ons_variants["variant"] = product.variant
+        
         product_add_ons_variants.push(catalog_add_ons_variants)
-
       end  
 
       return product_add_ons_variants

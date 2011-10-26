@@ -263,11 +263,20 @@ class Vendor < ActiveRecord::Base
 
   end
 
-  def self.get_vendor_by_product_id(id)
-    ven_id =  Product.find(id).vendor_id
-    return Vendor.find(ven_id)
+#  def self.get_vendor_by_product_id(id)
+#    ven_id =  Product.find(id).vendor_id
+#    return Vendor.find(ven_id)
+#  end
+
+  def self.get_vendor_by_id(id)
+
+      if Vendor.activeonly.exists?(id) 
+        return Vendor.activeonly.find(id)
+      else
+        return "No information available"
+      end
+
   end
-  
   
 
 end
