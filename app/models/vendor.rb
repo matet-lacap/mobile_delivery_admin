@@ -263,4 +263,11 @@ class Vendor < ActiveRecord::Base
 
   end
 
+  def self.get_vendor_by_product_id(id)
+    ven_id =  Product.find(id).vendor_id
+    return Vendor.find(ven_id)
+  end
+  
+  
+
 end

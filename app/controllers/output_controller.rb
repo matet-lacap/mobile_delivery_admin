@@ -4,9 +4,6 @@ class OutputController < ApplicationController
 
   def index
 
-#  self.get_product_variants(product_id)
-#  self.get_product_addons(product_id)
-
     @product = Product.get_product_all_info
     @vendor = Vendor.find(:all)
     @location = Location.get_info_with_state_name
@@ -22,14 +19,17 @@ class OutputController < ApplicationController
 
   def show
 
-    @query = Product.get_product_by_id_all_info(params[:id])
+    @product = Product.get_product_by_id_all_info(params[:id])
+    @vendor = Vendor.get_vendor_by_product_id(params[:id])
+    @location = Location.get_location_by_product_id(params[:id])
 
-    respond_to do |format|
-
-      format.json { render :json => @query }
-      format.xml { render :xml => @query }
-
-    end
+  
+    respond_with({
+    :products => @product,
+    :vendors => @vendor,
+    :location => @location
+    }
+    )
 
   end
 

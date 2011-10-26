@@ -1,6 +1,7 @@
 development:
   adapter: postgresql
-  database: mobiledeliverybackup_development
+#  database: mobiledeliverybackup_development
+  database: mobiledelivery_development
   username: postgres
   password: ubuntu
   host: localhost
@@ -18,7 +19,8 @@ test:
 
 production:
   adapter: postgresql
-  database: mobiledeliverybackup_production
+#  database: mobiledeliverybackup_production
+  database: mobiledelivery_development
   username: postgres
   password: ubuntu
   host: localhost

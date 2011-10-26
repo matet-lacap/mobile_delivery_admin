@@ -230,7 +230,7 @@ ActiveRecord::Schema.define(:version => 20111025093247) do
     t.string   "username"
     t.integer  "item"
     t.string   "table"
-    t.integer  "month",      :limit => 2
+    t.integer  "month"
     t.integer  "year",       :limit => 8
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -363,7 +363,5 @@ ActiveRecord::Schema.define(:version => 20111025093247) do
     t.boolean "is_active",                                 :default => true, :null => false
     t.string  "website"
   end
-
-  add_foreign_key "product_prices", "variants", :name => "product_prices_variant_id_fk", :dependent => :delete
 
 end
