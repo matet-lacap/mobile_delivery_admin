@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111026090912) do
+ActiveRecord::Schema.define(:version => 20111026102838) do
 
   create_table "add_ons", :force => true do |t|
     t.integer "catalog_id",                                                                  :null => false
@@ -324,11 +324,12 @@ ActiveRecord::Schema.define(:version => 20111026090912) do
   create_table "variants", :force => true do |t|
     t.integer "catalog_id"
     t.integer "product_id"
-    t.integer "sort_order",                :default => 1,    :null => false
-    t.string  "name",        :limit => 50,                   :null => false
+    t.integer "sort_order",                                                 :default => 1,    :null => false
+    t.string  "name",          :limit => 50,                                                  :null => false
     t.text    "description"
-    t.boolean "is_active",                 :default => true, :null => false
-    t.integer "version",                   :default => 0,    :null => false
+    t.boolean "is_active",                                                  :default => true, :null => false
+    t.integer "version",                                                    :default => 0,    :null => false
+    t.decimal "variant_price",               :precision => 10, :scale => 2, :default => 0.0
   end
 
   create_table "vats", :force => true do |t|
