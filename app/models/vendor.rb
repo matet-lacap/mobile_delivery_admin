@@ -103,6 +103,7 @@ class Vendor < ActiveRecord::Base
       field :zip_code
       field :email_address
       field :website
+      field :logo_url
       field :hotline_order
       field :hotline_technical
       field :phone
@@ -129,6 +130,7 @@ class Vendor < ActiveRecord::Base
       field :zip_code
       field :email_address
       field :website
+      field :logo_url
       field :hotline_order
       field :hotline_technical
       field :phone
