@@ -18,6 +18,7 @@ class Variant < ActiveRecord::Base
 # Active Record Triggers
   before_save :set_version
 
+
 # Rails Admin
 
   rails_admin do
@@ -50,6 +51,9 @@ class Variant < ActiveRecord::Base
 # Private Methods
 
   private
+
+
+
 
   def set_version
     self.version = self.version + 1

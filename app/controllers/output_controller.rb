@@ -4,14 +4,20 @@ class OutputController < ApplicationController
 
   def index
 
+
     @product = Product.get_product_all_info
-    @vendor = Vendor.find(:all)
+    @vendor = Vendor.activeonly
     @location = Location.get_info_with_state_name
-  
+    
+    #11-09-2011
+    #added news model in the main json as requested by Joey    
+    @news = News.activeonly
+    
     respond_with({
     :products => @product,
     :vendors => @vendor,
-    :location => @location
+    :location => @location,
+    :news => @news
     }
     )
     

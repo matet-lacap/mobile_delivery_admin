@@ -1,7 +1,7 @@
 development:
   adapter: postgresql
 #  database: mobiledeliverybackup_development
-  database: mobiledelivery_development
+  database: mobiledelivery_livedb_backup
   username: postgres
   password: ubuntu
   host: localhost
@@ -15,6 +15,9 @@ test:
   password: ubuntu
   host: localhost
   encoding: UTF8
+
+#local DB == mobiledelivery_development
+#backup of live DB will be in -->  mobiledelivery_livedb_backup
 
 
 production:

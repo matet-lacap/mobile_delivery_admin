@@ -1,6 +1,8 @@
 class News < ActiveRecord::Base
-# Scopes
 
+# Scopes
+  scope :activeonly, where(:is_active => true)
+  
 # Associations
 
   belongs_to :vendor

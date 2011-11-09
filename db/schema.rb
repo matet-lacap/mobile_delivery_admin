@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111026102838) do
+ActiveRecord::Schema.define(:version => 20111026105711) do
 
   create_table "add_ons", :force => true do |t|
     t.integer "catalog_id",                                                                  :null => false

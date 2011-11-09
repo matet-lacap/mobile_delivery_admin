@@ -39,7 +39,6 @@ MobileAdminBackup::Application.routes.draw do
   #match 'product/special_products' => 'product#special_products'
 
 
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -89,7 +88,7 @@ MobileAdminBackup::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => "vendor#show"
+  # root :to => "users/sign_in"
 
   # See how all your routes lay out with "rake routes"
 
@@ -200,9 +199,10 @@ MobileAdminBackup::Application.routes.draw do
   #     resources :products
   #   end
 
+
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-   root :to => 'welcome#index'
+  root :to => 'welcome#index'
 
   # See how all your routes lay out with "rake routes"
 

@@ -231,6 +231,9 @@ class Product < ActiveRecord::Base
     end
   end
 
+  #10262011
+  #Output = product info of a given product_id with addons and variants
+
   def self.get_product_by_id_all_info(product_id)
 
     product_add_ons_variants = Array.new
@@ -271,7 +274,7 @@ class Product < ActiveRecord::Base
   
 
   #10252011
-  #Output = product info with addons and variants
+  #Output = all product info with addons and variants
 
   def self.get_product_all_info    
     product_add_ons_variants = Array.new
