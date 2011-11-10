@@ -10,7 +10,7 @@ MobileAdminBackup::Application.routes.draw do
 
    match ':controller(/:action)'
 
-  resources :product, :vendor, :output
+  resources :product, :vendor, :output, :login
 
   #get 'product/special_products'
   #get 'product/show'
