@@ -2,6 +2,8 @@ class Salutation < ActiveRecord::Base
 
 # Scopes
 
+  scope :activeonly, where(:is_active => true)
+
 # Associations
 
   has_many :shop_users

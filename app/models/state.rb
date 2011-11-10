@@ -1,5 +1,7 @@
 class State < ActiveRecord::Base
+
 # Scopes
+  scope :activeonly, where(:is_active => true)
 
 # Associations
 
