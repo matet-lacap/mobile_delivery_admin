@@ -12,11 +12,16 @@ class LoginController < ApplicationController
     @ShopUser  = params[:user]
     email = @ShopUser["email_address"]
     pword = @ShopUser["password"]
-    message = ShopUser.authenticate_email(email,pword)
+
+    #check if input parameters are supplied
+    if email and pword    
+      message = ShopUser.authenticate_email(email,pword)
+    else
+      message = {"status" => 3, "message" => "Incorrect input parameters"}
+    end
     
     render :json => message
 
-    
   end
   
 end
