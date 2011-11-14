@@ -10,14 +10,22 @@ class LoginController < ApplicationController
   def create
 
     @ShopUser  = params[:user]
-    email = @ShopUser["email_address"]
-    pword = @ShopUser["password"]
-
-    #check if input parameters are supplied
-    if email and pword    
-      message = ShopUser.authenticate_email(email,pword)
+    
+    if @ShopUser
+      email = @ShopUser["email_address"]
+      pword = @ShopUser["password"]
+    
+      #check if input parameters are supplied
+      if email and pword    
+        message = ShopUser.authenticate_email(email,pword)
+      else
+        message = {"status" => 3, "message" => "Incomplete input parameters"}
+      end
+      
     else
-      message = {"status" => 3, "message" => "Incorrect input parameters"}
+
+      message = {"status" => 4, "message" => "No input parameters"}
+        
     end
     
     render :json => message

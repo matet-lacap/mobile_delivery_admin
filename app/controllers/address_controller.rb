@@ -13,7 +13,6 @@ class AddressController < ApplicationController
     if @DeliveryAddress
 
       if @DeliveryAddress["shop_user_id"] and @DeliveryAddress["name"] and @DeliveryAddress["city"] and @DeliveryAddress["zip_code"] and  @DeliveryAddress["street_address01"] and @DeliveryAddress["state_id"]
-
         
         if ShopUser.find(@DeliveryAddress["shop_user_id"]) and State.find(@DeliveryAddress["state_id"])
 

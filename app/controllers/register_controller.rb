@@ -37,7 +37,7 @@ class RegisterController < ApplicationController
         
       else
       
-        message = {"status" => 3, "message" => "No input parameter"}
+        message = {"status" => 4, "message" => "No input parameter"}
         
       end
           
@@ -47,11 +47,11 @@ class RegisterController < ApplicationController
 
     rescue ActiveRecord::RecordNotFound => e
         
-      message = {"status" => 4, "message" => "#{e}"}
+      message = {"status" => 5, "message" => "#{e}"}
 
     rescue Exception => msg
           
-      message = {"status" => 5, "message" => "Technical Error: #{msg}"}
+      message = {"status" => 6, "message" => "Technical Error: #{msg}"}
                 
     end
 
