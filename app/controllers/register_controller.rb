@@ -7,9 +7,9 @@ class RegisterController < ApplicationController
 
   def create
     
-    @RegisterShopUser  = params[:register_user]
-
     begin
+
+    @RegisterShopUser  = params[:register_user]    
 
       if @RegisterShopUser
         

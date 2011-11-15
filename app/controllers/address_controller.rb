@@ -6,9 +6,10 @@ class AddressController < ApplicationController
 
   def create
     
-    @DeliveryAddress  = params[:delivery_address]
 
     begin
+
+    @DeliveryAddress  = params[:delivery_address]
 
     if @DeliveryAddress
 

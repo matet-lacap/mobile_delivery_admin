@@ -8,24 +8,31 @@ class LoginController < ApplicationController
   #Returns corresponding status and status message for debugging
   
   def create
-
-    @ShopUser  = params[:user]
     
-    if @ShopUser
-      email = @ShopUser["email_address"]
-      pword = @ShopUser["password"]
-    
-      #check if input parameters are supplied
-      if email and pword    
-        message = ShopUser.authenticate_email(email,pword)
-      else
-        message = {"status" => 3, "message" => "Incomplete input parameters"}
-      end
-      
-    else
-
-      message = {"status" => 4, "message" => "No input parameters"}
+    begin
+        @ShopUser  = params[:user]
         
+        if @ShopUser
+          email = @ShopUser["email_address"]
+          pword = @ShopUser["password"]
+        
+          #check if input parameters are supplied
+          if email and pword    
+            message = ShopUser.authenticate_email(email,pword)
+          else
+            message = {"status" => 3, "message" => "Incomplete input parameters"}
+          end
+          
+        else
+
+          message = {"status" => 4, "message" => "No input parameters"}
+            
+        end
+
+    rescue Exception => msg
+
+      message = {"status" => 5, "message" => "Tech Error: #{msg}"}
+      
     end
     
     render :json => message
