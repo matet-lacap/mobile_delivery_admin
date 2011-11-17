@@ -4,9 +4,9 @@ class RegisterController < ApplicationController
   #Accepts salutation_id, first_name, last_name, mobile_phone, birth_date, email address and password as input (in JSON format)
   #Returns corresponding status and status/error message for debugging
   #Return shop user id if registration is successful
-
+begin
   def create
-    
+    puts "correct"
     begin
 
     @RegisterShopUser  = params[:register_user]    
@@ -22,22 +22,25 @@ class RegisterController < ApplicationController
             shop_user.update_attributes(@RegisterShopUser)
             shop_user.save!
             message = {"status" => 0, "message" => "Registration successful", "shop_user_id" => shop_user.id}          
-              
-          else
             
-            message = {"status" => 2, "message" => "Salutation id does not exist"}
+#11-17
+#Deleted lines: Else block no longer needed  
+#Adjusted status numbers since status 2 was removed                     
+#          else
+#            
+#            message = {"status" => 2, "message" => "Salutation id does not exist"}
                   
           end
             
         else
           
-          message = {"status" => 3, "message" => "Incomplete input parameters"}
+          message = {"status" => 2, "message" => "Incomplete input parameters"}
           
         end
         
       else
       
-        message = {"status" => 4, "message" => "No input parameter"}
+        message = {"status" => 3, "message" => "No input parameter"}
         
       end
           
@@ -47,11 +50,11 @@ class RegisterController < ApplicationController
 
     rescue ActiveRecord::RecordNotFound => e
         
-      message = {"status" => 5, "message" => "#{e}"}
+      message = {"status" => 4, "message" => "#{e}"}
 
     rescue Exception => msg
           
-      message = {"status" => 6, "message" => "Technical Error: #{msg}"}
+      message = {"status" => 5, "message" => "Technical Error: #{msg}"}
                 
     end
 
@@ -60,4 +63,6 @@ class RegisterController < ApplicationController
 
   end
 
+rescue
+end
 end

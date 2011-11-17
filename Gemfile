@@ -11,8 +11,8 @@ gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
 
 #gem 'pg'
 
-gem 'sqlite3', :group => [:development, :test]
-gem 'pg', :group => [:production]
+#gem 'sqlite3', :group => [:development, :test]
+gem 'pg'#, :group => [:production]
 
 # Gems used only for assets and not required
 # in production environments by default.

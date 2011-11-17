@@ -22,8 +22,8 @@ test:
 
 production:
   adapter: postgresql
-#  database: mobiledeliverybackup_production
-  database: mobiledelivery_development
+  database: mobiledelivery_livedb_backup
+#  database: mobiledelivery_development
   username: postgres
   password: ubuntu
   host: localhost

@@ -15,15 +15,29 @@ class ShopUser < ActiveRecord::Base
   validates :first_name, :last_name, :length => { :in => 2..25 }
   validates :email_address, :format => { :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i },   :length => { :maximum => 100 }, :uniqueness => true
   validates :mobile_phone, :numericality => true
-  validates :password, :length => { :in => 6..32 }
+  
+  #11-17-2011
+  #To be consisent with the database schema, the maximum number of characters allowed for password is changed to 20
+  #validates :password, :length => { :in => 6..32 }
+  
+  validates :password, :length => { :in => 6..20 }
 
 # Active Record Triggers
   before_save :set_version
 
 
+  
+  def before_validation
+    attributes.each_key {|a| self[a].strip! if self[a].respond_to? :strip! }
+  end
+
 # Private Methods
 
   private
+
+#  def before_validation
+#  attributes.each_key {|a| self[a].strip! if self[a].respond_to? :strip! }
+#  end
 
   def set_version
     self.version = self.version + 1
