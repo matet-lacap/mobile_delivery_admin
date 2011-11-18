@@ -6,7 +6,7 @@ class RegisterController < ApplicationController
   #Return shop user id if registration is successful
 begin
   def create
-    puts "correct"
+
     begin
 
     @RegisterShopUser  = params[:register_user]    
@@ -18,6 +18,7 @@ begin
             
           if Salutation.find(@RegisterShopUser["salutation_id"])
 
+           
             shop_user = ShopUser.new
             shop_user.update_attributes(@RegisterShopUser)
             shop_user.save!

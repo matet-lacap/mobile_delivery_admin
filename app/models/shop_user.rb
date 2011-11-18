@@ -14,7 +14,10 @@ class ShopUser < ActiveRecord::Base
   validates :first_name, :last_name, :email_address, :mobile_phone, :salutation_id, :presence => true
   validates :first_name, :last_name, :length => { :in => 2..25 }
   validates :email_address, :format => { :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i },   :length => { :maximum => 100 }, :uniqueness => true
-  validates :mobile_phone, :numericality => true
+
+  #11-18-2011
+  #Add validation on mobile_phone length
+  validates :mobile_phone, :numericality => true, :length => { :in => 4..25 }
   
   #11-17-2011
   #To be consisent with the database schema, the maximum number of characters allowed for password is changed to 20
@@ -24,20 +27,29 @@ class ShopUser < ActiveRecord::Base
 
 # Active Record Triggers
   before_save :set_version
+  before_validation :remove_whitespace_null
 
+# Remove leading and trailing whitespace characters 
+# Also checks if is_active is null, if yes, use default value
+# 11-18-2011
 
-  
-  def before_validation
-    attributes.each_key {|a| self[a].strip! if self[a].respond_to? :strip! }
+  def remove_whitespace_null
+        
+    if self.is_active == nil
+      self.is_active = true
+    end
+    
+    self.first_name.to_s.strip!
+    self.last_name.to_s.strip!
+    self.email_address.to_s.strip!
+    self.password.to_s.strip!
   end
 
 # Private Methods
 
   private
 
-#  def before_validation
-#  attributes.each_key {|a| self[a].strip! if self[a].respond_to? :strip! }
-#  end
+
 
   def set_version
     self.version = self.version + 1
